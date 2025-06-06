@@ -10,6 +10,7 @@ name: velopix
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: read
