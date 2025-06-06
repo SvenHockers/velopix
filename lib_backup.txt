@@ -1,0 +1,48 @@
+use pyo3::prelude::*;
+use pyo3::wrap_pyfunction;
+
+mod algorithms;
+mod event_model;
+mod validator;
+
+use crate::event_model::hit::Hit;
+use crate::event_model::track::Track;
+use crate::event_model::module::Module;
+use crate::event_model::event::Event;
+use crate::algorithms::track_following::TrackFollowing;
+use crate::algorithms::graph_dfs::GraphDFS;
+use crate::algorithms::search_by_triplet_trie::SearchByTripletTrie;
+use crate::validator::validator::{ 
+    print_validation_summary, 
+    compute_tracking_efficiency, 
+    export_validation_to_json, 
+    export_detailed_metrics_json 
+};
+
+#[pymodule]
+fn velopix(py: Python, m: &PyModule) -> PyResult<()> {
+    // Submodule: ReconstructionAlgorithms
+    let algo_class = PyModule::new(py, "ReconstructionAlgorithms")?;
+    algo_class.add_class::<TrackFollowing>()?;
+    algo_class.add_class::<GraphDFS>()?;
+    algo_class.add_class::<SearchByTripletTrie>()?;
+    m.add_submodule(algo_class)?;
+
+    // Submodule: Validator
+    let validation_class = PyModule::new(py, "Validator")?;
+    validation_class.add_function(wrap_pyfunction!(print_validation_summary, validation_class)?)?;
+    validation_class.add_function(wrap_pyfunction!(compute_tracking_efficiency, validation_class)?)?;
+    validation_class.add_function(wrap_pyfunction!(export_validation_to_json, validation_class)?)?;
+    validation_class.add_function(wrap_pyfunction!(export_detailed_metrics_json, validation_class)?)?;
+    m.add_submodule(validation_class)?;
+
+    // Submodule: DetectorEvent
+    let event_class = PyModule::new(py, "DetectorEvent")?;
+    event_class.add_class::<Hit>()?;
+    event_class.add_class::<Track>()?;
+    event_class.add_class::<Module>()?;
+    event_class.add_class::<Event>()?;
+    m.add_submodule(event_class)?;
+
+    Ok(())
+}
