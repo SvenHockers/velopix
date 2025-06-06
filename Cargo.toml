@@ -5,6 +5,9 @@ version = "0.7.7"
 edition = "2021"
 build = "build.rs"
 license = "MIT"
+repository = "https://github.com/SvenHockers/velopix"
+description = "Core VeloPix Particle Track Reconstruction Algorithms"
+keywords = ["rust", "python", "velopix", "CERN", "particle physics", "physics", "maturin", "lhcb", "track reconstruction","optimisation"]
 
 [lib]
 name = "velopix"

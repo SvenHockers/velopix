@@ -6,12 +6,13 @@ build-backend = "maturin"
 name = "velopix"
 version = "0.7.7"
 description = "CERN VeloPix Detector Framework & Hyperparameter Optimiser"
-repository = "https://github.com/your-username/my_crate"
+repository = "https://github.com/SvenHockers/velopix"
 readme = "README.md"
 requires-python = ">=3.7"
 license = { text = "MIT" }
 authors = [{ name = "Sven Hockers", email = "svenhockers1@gmail.com" }]
 
+requires-python = ">=3.9"
 packages = [{ include = "hyperParameterFramework" }]
 dependencies = [
     "numpy >= 2.0.2",
@@ -23,3 +24,16 @@ dependencies = [
 
 [tool.maturin]
 python-source = "src"
+
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Physics :: Elementary Particle Physics",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries :: Rust Modules",
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
