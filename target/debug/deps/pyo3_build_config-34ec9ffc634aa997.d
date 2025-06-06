@@ -1,0 +1,13 @@
+C:\Users\shockers\Desktop\velopix\target\debug\deps\libpyo3_build_config-34ec9ffc634aa997.rmeta: C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\lib.rs C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\errors.rs C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\impl_.rs C:\Users\shockers\Desktop\velopix\target\debug\build\pyo3-build-config-a8ba3bbe6a10802f\out/pyo3-build-config-file.txt C:\Users\shockers\Desktop\velopix\target\debug\build\pyo3-build-config-a8ba3bbe6a10802f\out/pyo3-build-config.txt
+
+C:\Users\shockers\Desktop\velopix\target\debug\deps\libpyo3_build_config-34ec9ffc634aa997.rlib: C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\lib.rs C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\errors.rs C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\impl_.rs C:\Users\shockers\Desktop\velopix\target\debug\build\pyo3-build-config-a8ba3bbe6a10802f\out/pyo3-build-config-file.txt C:\Users\shockers\Desktop\velopix\target\debug\build\pyo3-build-config-a8ba3bbe6a10802f\out/pyo3-build-config.txt
+
+C:\Users\shockers\Desktop\velopix\target\debug\deps\pyo3_build_config-34ec9ffc634aa997.d: C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\lib.rs C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\errors.rs C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\impl_.rs C:\Users\shockers\Desktop\velopix\target\debug\build\pyo3-build-config-a8ba3bbe6a10802f\out/pyo3-build-config-file.txt C:\Users\shockers\Desktop\velopix\target\debug\build\pyo3-build-config-a8ba3bbe6a10802f\out/pyo3-build-config.txt
+
+C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\lib.rs:
+C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\errors.rs:
+C:\Users\shockers\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\pyo3-build-config-0.18.3\src\impl_.rs:
+C:\Users\shockers\Desktop\velopix\target\debug\build\pyo3-build-config-a8ba3bbe6a10802f\out/pyo3-build-config-file.txt:
+C:\Users\shockers\Desktop\velopix\target\debug\build\pyo3-build-config-a8ba3bbe6a10802f\out/pyo3-build-config.txt:
+
+# env-dep:OUT_DIR=C:\\Users\\shockers\\Desktop\\velopix\\target\\debug\\build\\pyo3-build-config-a8ba3bbe6a10802f\\out
