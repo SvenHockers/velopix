@@ -1,8 +1,8 @@
-from .event_metrics import EventMetricsCalculator
-from .optimizers import BaseOptimizer
-from .pipeline import PipelineBase, TrackFollowingPipeline, GraphDFSPipeline, SearchByTripletTriePipeline
-from .reconstruction_algorithms import ReconstructionAlgorithms
-from . import velopixTypes
+from ._event_metrics import EventMetricsCalculator
+from ._optimizers import BaseOptimizer
+from ._pipeline import PipelineBase, TrackFollowingPipeline, GraphDFSPipeline, SearchByTripletTriePipeline
+from ._reconstruction_algorithms import ReconstructionAlgorithms
+from . import _velopixTypes
 
 __all__ = [
     "EventMetricsCalculator",
@@ -12,5 +12,5 @@ __all__ = [
     "GraphDFSPipeline",
     "SearchByTripletTriePipeline",
     "ReconstructionAlgorithms",
-    "velopixTypes"
+    "_velopixTypes"
 ]

@@ -1,9 +1,9 @@
-from .Bayesian import Bayesian
-from .GridSearch import GridSearch
-from .ParticleSwarm import ParticleSwarm
+from ._Bayesian import Bayesian
+from ._GridSearch import GridSearch
+from ._ParticleSwarm import ParticleSwarm
 
 __all__ = [
-    "Bayesian",
-    "GridSearch",
-    "ParticleSwarm"
+    "_Bayesian",
+    "_GridSearch",
+    "_ParticleSwarm"
 ]
