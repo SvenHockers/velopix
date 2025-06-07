@@ -23,7 +23,7 @@ class PipelineBase(ABC):
     @abstractmethod
     def model(self, pmap: pMap) -> ReconstructionAlgorithmsType: pass
 
-    def run(self, overwrite: bool) -> None:
+    def run(self, overwrite: bool, verbose: bool = False) -> None:
         # here I should include a warning if self.results != empty break to prevent loss of data
         if hasattr(self, "results") and not overwrite:
             warnings.warn("Overwriting results. This will cause a loss of data!", UserWarning)
@@ -36,9 +36,9 @@ class PipelineBase(ABC):
             self.tracks: list[Track] = model.solve_batch(self.events)
             runtime = time.time() - tstart 
             if self.nested:
-                valMap = export_detailed_metrics_json(self.json_events, self.tracks, verbose=True) # type: ignore
+                valMap = export_detailed_metrics_json(self.json_events, self.tracks, verbose) # type: ignore
             else:
-                valMap = export_validation_to_json(self.json_events, self.tracks, verbose=False) # type: ignore
+                valMap = export_validation_to_json(self.json_events, self.tracks, verbose) # type: ignore
             valMap["inference_time"] = runtime
             valMap["parameters"] = {
                 "max_slope": (pmap.get("x_slope"), pmap.get("y_slope")), 
