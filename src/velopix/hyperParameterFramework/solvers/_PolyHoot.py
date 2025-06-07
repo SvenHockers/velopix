@@ -10,7 +10,7 @@ class PolyHoot(BaseOptimizer):
         nested: bool = True,
         weights: list[float] = [1.0, 1.0, 1.0, -10.0]
     ):
-        super().__init__(objective=objective, auto_eval={"autoEval": True, nested: True, "weights": weights})
+        super().__init__(objective=objective, auto_eval={"autoEval": True, nested: nested, "weights": weights})
         self.max_iterations = max_iterations
         self.current_iteration = 0
 
@@ -148,8 +148,8 @@ class PolyHoot(BaseOptimizer):
 
         new_bounds = self.returnBounds(node.bounds)
 
-        node.add_child(Node(bounds=new_bounds[0], parent=node))
-        node.add_child(Node(bounds=new_bounds[1], parent=node))
+        node.add_child(PolyHoot.Node(bounds=new_bounds[0], parent=node))
+        node.add_child(PolyHoot.Node(bounds=new_bounds[1], parent=node))
 
 
         pmap = self.returnPmap(node.bounds)
@@ -175,7 +175,7 @@ class PolyHoot(BaseOptimizer):
                     current = current.parent
 
 
-        print(f"score: {self.best_score}\n")
+        # print(f"score: {self.best_score}\n")
                 
         return finished
     

@@ -95,14 +95,14 @@ class BaseOptimizer(ABC):
             calculator = EventMetricsCalculator(run_data)
             clone_rate = calculator.get_metric(metric="clone_percentage", stat="mean")
             terms = (time_rate, clone_rate, ghost_rate, num_tracks)
-            return sum(w * t for w, t in zip(weights, terms, strict=True)) + penalty
+            return sum(w * t for w, t in zip(weights, terms)) + penalty
         terms = (time_rate, ghost_rate, num_tracks)
-        return sum(w * t for w, t in zip(weights, terms, strict=True)) + penalty
+        return sum(w * t for w, t in zip(weights, terms)) + penalty
     
     def _evaluate_run(self, validationResult: ValidationResults | ValidationResultsNested, weight: list[float], nested: bool = False) -> None:
         score = self.objective_func(weight, nested)
         self.history[str(uuid4())] = {
-            "params": deepcopy(self.prev_config),
+            "params": deepcopy(validationResult.get("parameters")),
             "score": deepcopy(score),
             "meta": deepcopy(validationResult)
         }
