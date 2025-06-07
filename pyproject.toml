@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "velopix"
-version = "0.8.2"
+version = "0.8.3"
 description = "CERN VeloPix Detector Framework & Hyperparameter Optimiser"
 repository = "https://github.com/SvenHockers/velopix"
 readme = "README.md"
