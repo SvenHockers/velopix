@@ -366,6 +366,41 @@ Module providing hyper-parameter optimization solvers following a common `BaseOp
     * `_update_velocities_positions() -> None` — Perform velocity and position updates after each full swarm evaluation.
     * `is_finished() -> bool` — Check if PSO has reached stopping criteria.
 
+* **PolyHoot**
+
+  * **Constructor:**
+
+    ```python
+    PolyHoot(
+        max_iterations: int = 100,
+        objective: Literal["min", "max"] = "min",
+        nested: bool = True,
+        weights: list[float] = [1.0, 1.0, 1.0, -10.0]
+    ) -> None
+    ```
+
+    * `max_iterations` — Maximum number of MCTS-based optimization iterations.
+    * `objective` — Objective direction: "min" or "max".
+  * **Attributes:**
+
+    * `current_iteration: int` — Iteration counter.
+    * `best_score: float` — Best cumulative reward seen (lower is better if minimizing).
+    * `cfg: pMapType` — Configuration schema of the target algorithm.
+    * `bounds: boundType` — Original parameter bounds.
+    * `root: Node` — Root of the MCTS tree over boolean splits.
+    * `current_node: Node` — Leaf node most recently expanded.
+    * `alfa: float` — UCT exploration exponent.
+    * `epsilon: float` — UCT scaling factor.
+    * `eta: float` — UCT visitation exponent.
+    * `nu: float` — Exploration bonus base magnitude.
+    * `ro: float` — Decay rate per tree depth.
+  * **Methods:**
+
+    * `init() -> pMap` — Initialize tree and return first parameter map via midpoint splitting.
+    * `next() -> pMap` — Backpropagate last score, run one UCT selection-expansion, return new parameter map.
+    * `is_finished() -> bool` — Check if `current_iteration >= max_iterations`, backpropagating final score.
+
+---
 ## velopix.ReconstructionAlgorithms
 
 Module providing track reconstruction algorithms leveraging different graph and triplet-based approaches.

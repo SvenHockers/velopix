@@ -6,9 +6,11 @@ class PolyHoot(BaseOptimizer):
     def __init__(
         self,
         max_iterations: int = 100,
-        objective: Literal["min", "max"] = "min"
+        objective: Literal["min", "max"] = "min",
+        nested: bool = True,
+        weights: list[float] = [1.0, 1.0, 1.0, -10.0]
     ):
-        super().__init__(objective=objective, auto_eval={"autoEval": True, "nested": True, "weights": [1.0, 1.0, 1.0, -10.0]})
+        super().__init__(objective=objective, auto_eval={"autoEval": True, nested: True, "weights": weights})
         self.max_iterations = max_iterations
         self.current_iteration = 0
 
