@@ -2,8 +2,13 @@
 from .._optimizers import BaseOptimizer, pMap
 from collections.abc import Generator
 from itertools import product
-from typing import Any, TypeAlias, cast, Literal
+from typing import Any, cast, Literal
 from math import inf
+
+try:
+    from typing import TypeAlias
+except ImportError:
+    from typing_extensions import TypeAlias
 
 import numpy as np
 

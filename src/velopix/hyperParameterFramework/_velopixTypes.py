@@ -1,5 +1,10 @@
-from typing import TypeAlias, Union, Any
+from typing import Union, Any
 from velopix.ReconstructionAlgorithms import TrackFollowing, GraphDFS, SearchByTripletTrie
+
+try:
+    from typing import TypeAlias
+except ImportError:
+    from typing_extensions import TypeAlias
 
 MetricsDict: TypeAlias = dict[str, int|float|bool]
 pMapType: TypeAlias = dict[str, tuple[type[int]|type[float]|type[bool],Any]]
