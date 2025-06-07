@@ -40,9 +40,9 @@ Velopix is designed for:
 
 Full documentation is available online:
 
-- [Installation Guide](https://github.com/SvenHockers/velopix/docs/installation)
-- [System Overview](https://github.com/SvenHockers/velopix/docs/system_overview)
-- [API Reference](https://github.com/SvenHockers/velopix/docs/api)
+- [Installation Guide](https://github.com/SvenHockers/velopix/blob/main/docs/installation.md)
+- [System Overview](https://github.com/SvenHockers/velopix/blob/main/docs/installation.md)
+- [API Reference](https://github.com/SvenHockers/velopix/blob/main/docs/api.md)
 
 ---
 
