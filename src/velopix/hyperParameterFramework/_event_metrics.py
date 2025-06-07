@@ -25,19 +25,19 @@ class EventMetricsCalculator:
         events_list = [entry for event_list in events.values() for entry in event_list]
         return pd.DataFrame(events_list)
 
-    def compute_aggregations(self) -> pd.DataFrame|None:
+    def compute_aggregations(self) -> Union[pd.DataFrame,None]:
         if self.df_events.empty or 'label' not in self.df_events.columns:
             raise(AssertionError("Something went wrong (Sorry was to lazy to define a helpfull error)"))
 
         numeric_cols = self.df_events.select_dtypes(include=['number']).columns
 
-        def q25(x: int|float) -> float:
+        def q25(x: Union[int, float]) -> float:
             return x.quantile(0.25) # type: ignore
-        def q75(x: int|float) -> float:
+        def q75(x: Union[int, float]) -> float:
             return x.quantile(0.75) # type: ignore
-        def my_skew(x: int|float) -> float:
+        def my_skew(x: Union[int, float]) -> float:
             return x.skew() # type: ignore
-        def my_kurtosis(x: int|float) -> float:
+        def my_kurtosis(x: Union[int, float]) -> float:
             return x.kurtosis() # type: ignore
         
         q25.__name__ = 'q25'
@@ -45,7 +45,7 @@ class EventMetricsCalculator:
         my_skew.__name__ = 'skew'
         my_kurtosis.__name__ = 'kurtosis'
 
-        aggregations: list[str|function] = [
+        aggregations: list[Union[str, function]] = [
             'mean',
             'std',
             'min',

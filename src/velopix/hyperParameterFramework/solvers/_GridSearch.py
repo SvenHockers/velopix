@@ -2,7 +2,7 @@
 from .._optimizers import BaseOptimizer, pMap
 from collections.abc import Generator
 from itertools import product
-from typing import Any, cast, Literal
+from typing import Any, cast, Literal, Union
 from math import inf
 
 try:
@@ -12,7 +12,7 @@ except ImportError:
 
 import numpy as np
 
-_Types: TypeAlias = bool | int | float
+_Types: TypeAlias = Union[bool, int, float]
 HSpace: TypeAlias = Generator[pMap, None, None] # NOTE: Stands for "hypothesis space"
 
 class GridSearch(BaseOptimizer):

@@ -6,12 +6,12 @@ from velopix.Validator import print_validation_summary, export_validation_to_jso
 from ._optimizers import BaseOptimizer
 from ._reconstruction_algorithms import ReconstructionAlgorithms
 from ._velopixTypes import *
-from typing import cast
+from typing import cast, Union
 # from tqdm import tqdm
 import warnings
 
 class PipelineBase(ABC):
-    def __init__(self, events: EventType, intra_node: bool, parameter_map: list[pMap]|None = None) -> None:
+    def __init__(self, events: EventType, intra_node: bool, parameter_map: Union[list[pMap],None] = None) -> None:
         self.name: ReconstructionAlgorithms
         self.json_events = events
         self.nested = intra_node
@@ -98,7 +98,7 @@ class PipelineBase(ABC):
         print(f"Estimated database size: {size:.2f} {unit}")
 
     # note this print func is computationally heavy
-    def print_validation(self, parameters: pMap|None = None, verbose: bool = True) -> None: 
+    def print_validation(self, parameters: Union[pMap,None] = None, verbose: bool = True) -> None: 
         if not hasattr(self, "tracks"):
             if parameters == None:
                 raise(AssertionError)
@@ -121,7 +121,7 @@ class PipelineBase(ABC):
     #         return func(self.results)
         
 class TrackFollowingPipeline(PipelineBase):
-    def __init__(self, events: EventType, intra_node: bool, parameter_map: list[pMap]|None=None):
+    def __init__(self, events: EventType, intra_node: bool, parameter_map: Union[list[pMap],None]=None):
         super().__init__(events, intra_node, parameter_map)
         self.name = ReconstructionAlgorithms.TRACK_FOLLOWING
 
@@ -133,7 +133,7 @@ class TrackFollowingPipeline(PipelineBase):
         )
     
 class GraphDFSPipeline(PipelineBase):
-    def __init__(self, events: EventType, intra_node: bool, parameter_map: list[pMap]|None=None):
+    def __init__(self, events: EventType, intra_node: bool, parameter_map: Union[list[pMap],None]=None):
         super().__init__(events, intra_node, parameter_map)
         self.name = ReconstructionAlgorithms.GRAPH_DFS
         
@@ -150,7 +150,7 @@ class GraphDFSPipeline(PipelineBase):
         )
     
 class SearchByTripletTriePipeline(PipelineBase):
-    def __init__(self, events: EventType, intra_node: bool, parameter_map: list[pMap]|None=None):
+    def __init__(self, events: EventType, intra_node: bool, parameter_map: Union[list[pMap],None]=None):
         super().__init__(events, intra_node, parameter_map)
         self.name = ReconstructionAlgorithms.SEARCH_BY_TRIPLET_TRIE
 

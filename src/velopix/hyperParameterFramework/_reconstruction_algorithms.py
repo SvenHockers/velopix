@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import cast
+from typing import cast, Union
 from ._velopixTypes import *
 
 class ReconstructionAlgorithms(Enum):
@@ -10,7 +10,7 @@ class ReconstructionAlgorithms(Enum):
         "y_tol": (float, None),
         "scatter": (float, None),
     }
-    GRAPH_DFS = cast(dict[str, tuple[type[float] | type[int] | type[bool], None]], {
+    GRAPH_DFS = cast(dict[str, Union[tuple[type[float], type[int], type[bool]], None]], {
         "x_slope": (float, None),  
         "y_slope": (float, None), 
         "x_tol": (float, None),    
@@ -22,7 +22,7 @@ class ReconstructionAlgorithms(Enum):
         "allow_cross_track": (bool, None),              
         "clone_ghost_killing": (bool, None),
     })
-    SEARCH_BY_TRIPLET_TRIE = cast(dict[str, tuple[type[float] | type[int], None]], {
+    SEARCH_BY_TRIPLET_TRIE = cast(dict[str, Union[tuple[type[float], type[int]], None]], {
         "scatter": (float, None),
         "min_strong_track_length": (int, None),
         "allowed_missed_modules": (int, None),

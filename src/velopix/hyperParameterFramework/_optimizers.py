@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from copy import deepcopy
-from typing import cast
+from typing import cast, Union
 from uuid import UUID, uuid4
 
 from ._reconstruction_algorithms import ReconstructionAlgorithms
@@ -11,7 +11,7 @@ from ._velopixTypes import *
 
 
 class BaseOptimizer(ABC):
-    def __init__(self, objective: str = "min", auto_eval: dict[str, bool|list[float]] = {"autoEval": False, "nested": True, "weights": []}):
+    def __init__(self, objective: str = "min", auto_eval: dict[str, Union[bool, list[float]]] = {"autoEval": False, "nested": True, "weights": []}):
         self.objective = objective
         if objective == "min": self.best_score = float("inf")
         elif objective == "max": self.best_score = float("-inf")
@@ -83,7 +83,7 @@ class BaseOptimizer(ABC):
     Objective Function methods:
     """
 
-    def objective_func(self, weights: Sequence[float], nested: bool = True) -> int|float:
+    def objective_func(self, weights: Sequence[float], nested: bool = True) -> Union[int, float]:
         run_data = self.get_run_data()
         time_rate = cast(float, run_data.get("inference_time", nan))
         ghost_rate = cast(float, run_data.get("overall_ghost_rate", nan))
@@ -99,7 +99,7 @@ class BaseOptimizer(ABC):
         terms = (time_rate, ghost_rate, num_tracks)
         return sum(w * t for w, t in zip(weights, terms)) + penalty
     
-    def _evaluate_run(self, validationResult: ValidationResults | ValidationResultsNested, weight: list[float], nested: bool = False) -> None:
+    def _evaluate_run(self, validationResult: Union[ValidationResults, ValidationResultsNested], weight: list[float], nested: bool = False) -> None:
         score = self.objective_func(weight, nested)
         self.history[str(uuid4())] = {
             "params": deepcopy(validationResult.get("parameters")),
