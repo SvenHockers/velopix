@@ -117,7 +117,7 @@ class ParticleSwarm(BaseOptimizer):
         score = self.objective_func(self.weights, self.nested)
         
         # Store data
-        self.score_history.append(score)
+        #self.score_history.append(score)
 
         i = self.current_particle_index
         # Update personal best if this is better
