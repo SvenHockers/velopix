@@ -15,7 +15,7 @@ class ParticleSwarm(BaseOptimizer):
         nested: bool = False,
         weights: list[float] = [1.0, 1.0, 1.0, -10.0]
     ):
-        super().__init__(objective=objective)
+        super().__init__(objective=objective, auto_eval={"autoEval": True, "nested": nested, "weights": weights})
         self.swarm_size = swarm_size
         self.inertia = inertia
         self.cognitive = cognitive
