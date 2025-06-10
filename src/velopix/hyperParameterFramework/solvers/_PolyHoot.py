@@ -5,6 +5,9 @@ from .._optimizers import BaseOptimizer, pMap
 class PolyHoot(BaseOptimizer):
     def __init__(
         self,
+        alfa: float = 5,
+        epsilon: foat = 20,
+        eta: float = 0.5,
         max_iterations: int = 100,
         objective: Literal["min", "max"] = "min",
         nested: bool = True,
@@ -26,9 +29,9 @@ class PolyHoot(BaseOptimizer):
         self.cfg = self._algorithm.get_config()
         self.bounds = self._algorithm.get_bounds()
 
-        self.alfa = 5
-        self.epsilon = 20
-        self.eta = 0.5
+        self.alfa = alfa
+        self.epsilon = epislon
+        self.eta = eta
 
         self.root = PolyHoot.Node(bounds=self.bounds)  # Root node with no bounds
         self.nodes = [self.root]
