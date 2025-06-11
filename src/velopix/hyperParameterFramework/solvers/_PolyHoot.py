@@ -6,7 +6,7 @@ class PolyHoot(BaseOptimizer):
     def __init__(
         self,
         alfa: float = 5,
-        epsilon: foat = 20,
+        epsilon: float = 20,
         eta: float = 0.5,
         max_iterations: int = 100,
         objective: Literal["min", "max"] = "min",
