@@ -16,6 +16,9 @@ class PolyHoot(BaseOptimizer):
         super().__init__(objective=objective, auto_eval={"autoEval": True, nested: nested, "weights": weights})
         self.max_iterations = max_iterations
         self.current_iteration = 0
+        self.alfa = alfa
+        self.epsilon = epsilon
+        self.eta = eta
 
 
     def init(self) -> pMap:
@@ -28,10 +31,6 @@ class PolyHoot(BaseOptimizer):
 
         self.cfg = self._algorithm.get_config()
         self.bounds = self._algorithm.get_bounds()
-
-        self.alfa = alfa
-        self.epsilon = epislon
-        self.eta = eta
 
         self.root = PolyHoot.Node(bounds=self.bounds)  # Root node with no bounds
         self.nodes = [self.root]
