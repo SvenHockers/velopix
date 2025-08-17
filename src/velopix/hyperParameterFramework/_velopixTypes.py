@@ -15,4 +15,4 @@ ReconstructionAlgorithmsType: TypeAlias = Union[TrackFollowing, GraphDFS, Search
 ValidationResults: TypeAlias = dict[str, dict[str, list[dict[str, Union[int, float, str]]]]]
 ValidationResultsNested: TypeAlias = dict[str, dict[str, Union[list[dict[str, Union[int, float, str]]],dict[str, list[Union[int, float, str]]]]]]
 ConfigType: TypeAlias = dict[str, tuple[Union[type[float], type[bool], type[int]], Any]]
-boundType: TypeAlias = dict[str, tuple[Union[int, float], Any] | None]
+boundType: TypeAlias = dict[str, tuple[Union[int, float], Any] | bool | None]
