@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from copy import deepcopy
 from typing import cast, Union
-from uuid import UUID, uuid4
+from uuid import uuid4
 
 from ._reconstruction_algorithms import ReconstructionAlgorithms
 from ._event_metrics import EventMetricsCalculator
@@ -38,7 +38,7 @@ class BaseOptimizer(ABC):
     def start(self, algorithm: ReconstructionAlgorithms) -> pMap:
         self._algorithm = algorithm # this is required for the pMap validation
         pmap = self.init()
-        if self.validate_config(pmap, self._algorithm.value):
+        if self.validate_config(pmap, self._algorithm.value): # type: ignore
             return pmap
         raise ValueError("Parameter map validation failed.")
 
@@ -48,7 +48,7 @@ class BaseOptimizer(ABC):
         logic is. And does an additional schema validation on it.
         """
         pmap = self.next()
-        if self.validate_config(pmap, self._algorithm.value):
+        if self.validate_config(pmap, self._algorithm.value): # type: ignore
             self.prev_config = pmap
             return pmap
         raise ValueError("Parameter map validation failed.")
