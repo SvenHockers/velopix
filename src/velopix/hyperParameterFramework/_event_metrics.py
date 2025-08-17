@@ -13,23 +13,25 @@ Here is a list of available metrics:
     'n_particles'
     'n_reco'                         
     'purityT'         
-    'recoeffT'                        
+    'recoeffT'        
+
+of a final note: pandas is not typed, there for we need to use type: ignore a lot                
 """
 class EventMetricsCalculator:
     def __init__(self, validation_results: ValidationResults):
         self.validation_results = validation_results
-        self.df_events = self._create_events_dataframe()
+        self.df_events: pd.DataFrame = self._create_events_dataframe()
 
-    def _create_events_dataframe(self):
+    def _create_events_dataframe(self) -> pd.DataFrame:
         events: dict[str, list[dict[str, Union[int, float, str]]]] = self.validation_results.get("events", {})
         events_list = [entry for event_list in events.values() for entry in event_list]
         return pd.DataFrame(events_list)
 
     def compute_aggregations(self) -> Union[pd.DataFrame,None]:
-        if self.df_events.empty or 'label' not in self.df_events.columns:
+        if self.df_events.empty or 'label' not in self.df_events.columns: # type: ignore
             raise(AssertionError("Something went wrong (Sorry was to lazy to define a helpfull error)"))
 
-        numeric_cols = self.df_events.select_dtypes(include=['number']).columns
+        numeric_cols = self.df_events.select_dtypes(include=['number']).columns # type: ignore
 
         def q25(x: Union[int, float]) -> float:
             return x.quantile(0.25) # type: ignore
@@ -66,7 +68,7 @@ class EventMetricsCalculator:
     def flatten_aggregations(self, agg_df: pd.DataFrame) -> MetricsDict:
         metrics: MetricsDict = {}
         for label, row in agg_df.iterrows(): # type: ignore
-            for col, stat in agg_df.columns:
+            for col, stat in agg_df.columns: # type: ignore
                 metrics[f"{label}_{col}_{stat}"] = row[(col, stat)] # type: ignore
         return metrics
 
