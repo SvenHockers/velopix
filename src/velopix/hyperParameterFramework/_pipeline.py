@@ -102,7 +102,7 @@ class PipelineBase(ABC):
         if not hasattr(self, "tracks"):
             if parameters == None:
                 raise(AssertionError)
-            self.tracks: list[Track] = self.model(parameters).solve_batch(self.events) 
+            self.tracks = self.model(parameters).solve_batch(self.events) 
         print_validation_summary(self.json_events, self.tracks, verbose) # type: ignore
 
     # def generate_database(self, output_directory: str, overwrite: bool) -> None:
