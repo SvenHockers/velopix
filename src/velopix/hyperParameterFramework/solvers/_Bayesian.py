@@ -183,3 +183,5 @@ class Bayesian(BaseOptimizer):
         """Determines if optimization is complete."""
         if self._stopped:
             return True
+        else: 
+            return False
