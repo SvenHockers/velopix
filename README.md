@@ -16,20 +16,21 @@ Velopix implements a layered architecture with core computational components wri
 
 1. **Track Following**: A greedy forward-tracking algorithm that builds tracks by extending hit sequences based on slope compatibility criteria. For hits $h_0$ and $h_1$, compatibility is determined by:
 
-   $$
-   |x_1 - x_0| < \texttt{max\_slope\_x} \times |z_1 - z_0|
-   $$
    
-   $$
-   |y_1 - y_0| < \texttt{max\_slope\_y} \times |z_1 - z_0|
-   $$
+$$
+|x_1 - x_0| < \texttt{max\_slope\_x}\, |z_1 - z_0|
+$$
+
+$$
+|y_1 - y_0| < \texttt{max\_slope\_y}\, |z_1 - z_0|
+$$
 
 2. **Graph DFS**: A graph-based approach that constructs segments between hit pairs and uses depth-first search with iterative weight assignment. Segments are weighted based on their connectivity, and tracks are extracted from high-weight paths through the graph structure.
 
 3. **Search by Triplet Trie**: A pattern-matching algorithm that builds tracks from compatible triplets of hits. Uses a trie data structure to efficiently store and retrieve compatible hit combinations, with scatter validation:
    $$
-   \mathrm{scatter} = \frac{dx^2 + dy^2}{dz_{12}^2} < \mathrm{max\_scatter}
-   $$
+\operatorname{scatter} = \frac{dx^2 + dy^2}{dz_{12}^2} < \texttt{max\_scatter}
+$$
 
 **Validation Framework (`validator`)**: Provides comprehensive track quality assessment through Monte Carlo truth matching. Computes efficiency metrics, purity measures, and identifies clone and ghost tracks using configurable matching criteria.
 
