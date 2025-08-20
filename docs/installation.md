@@ -1,17 +1,27 @@
 # Installation Guide
 
-## Requirements
+## System Requirements
 
-* Python 3.9+
-* pip
+- **Python**: 3.9 or higher
+- **Operating System**: Linux, macOS, or Windows
+- **Memory**: Minimum 4GB RAM (8GB recommended for large datasets)
+- **Dependencies**: NumPy, Pandas, SciPy, scikit-learn
 
 ## Installing from PyPI
+
+The simplest installation method for end users:
 
 ```bash
 pip install velopix
 ```
 
+> [!NOTE]  
+> Due to the limited availabillity of macOS VMs at Github (and the fact that I'm unwilling to pay) macOS builds might not be up-to-date. </br>
+> Therefor on macOS I would suggest installing `velopix` from source.
+
 ## Installing from Source
+
+For developers or users requiring the latest features:
 
 ```bash
 git clone https://github.com/SvenHockers/velopix.git
@@ -20,41 +30,56 @@ pip install maturin
 python -m maturin develop --release
 ```
 
-For development, it's recommended to use a virtual environment:
+### Development Environment Setup
+
+For development work, use a virtual environment to isolate dependencies:
 
 ```bash
-python -m venv env
-source env/bin/activate
-pip install velopix
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements-dev.txt
+python -m maturin develop --release
+```
+
+## Verifying Installation
+
+Test your installation with:
+
+```python
+import velopix
+from velopix.DetectorEvent import Event, Hit, Track, Module
+from velopix.ReconstructionAlgorithms import TrackFollowing
+print("Velopix installed successfully!")
 ```
 
 ---
 
 # Developer Guide
 
-## Repository Structure
+## Architecture Overview
 
-* `event_model/` – Event data structures and parsers
-* `pipelines/` – Predefined pipeline definitions
-* `algorithms/` – Reconstruction logic
-* `validator/` – Scoring and evaluation
-* `tests/` – Unit tests
+Velopix follows a hybrid Rust-Python architecture with four core modules:
 
-## Adding a New Algorithm
+### Repository Structure
 
-1. Implement the algorithm logic
-2. Expose it through a pipeline class
-3. Add configuration or parameters if needed
-4. Write tests and validation cases
-
-## Extending the Validator
-
-You can add custom metrics by extending the `EventMetricsCalculator` and updating the reporting logic.
-
-## Testing
-
-Run all tests with:
-
-```bash
-pytest
+```
+src/
+├── algorithms/          # Rust reconstruction algorithms
+│   ├── track_following.rs
+│   ├── graph_dfs.rs
+│   └── search_by_triplet_trie.rs
+├── event_model/         # Core data structures
+│   ├── event.rs
+│   ├── hit.rs
+│   ├── module.rs
+│   └── track.rs
+├── validator/           # Performance validation
+│   ├── validator.rs
+│   ├── efficiency.rs
+│   └── mc_particles.rs
+└── velopix/            # Python interface
+    └── hyperParameterFramework/  # Optimization suite
+        ├── solvers/
+        ├── _pipeline.py
+        └── _optimizers.py
 ```
